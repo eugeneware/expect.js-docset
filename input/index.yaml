@@ -1,0 +1,6 @@
+title: expect.js
+bundle_name: ExpectJS
+keyword: expect
+files: ["index.md", "../github.css"]
+index_file: "index.md"
+stylesheet: github.css
