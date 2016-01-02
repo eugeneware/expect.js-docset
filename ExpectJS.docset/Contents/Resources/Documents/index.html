@@ -1,0 +1,195 @@
+
+            <html>
+                <head>
+                    <title>expect.js</title>
+                    <link rel="stylesheet" type="text/css" href="github.css">
+                </head>
+
+                <body>
+                    
+            <html>
+                <head>
+                    <title>expect.js</title>
+                    <link rel="stylesheet" type="text/css" href="github.css">
+                </head>
+
+                <body>
+                    <h1><a id="Expect_0" class="dashAnchor" name="//apple_ref/Module/Expect"></a>Expect</h1>
+<p>Minimalistic BDD assertion toolkit based on
+<a href="http://github.com/visionmedia/should.js">should.js</a></p>
+<pre><code class="hljs language-js">expect(<span class="hljs-built_in">window</span>.r).to.be(<span class="hljs-literal">undefined</span>);
+expect({ a: <span class="hljs-string">&apos;b&apos;</span> }).to.eql({ a: <span class="hljs-string">&apos;b&apos;</span> })
+expect(<span class="hljs-number">5</span>).to.be.a(<span class="hljs-string">&apos;number&apos;</span>);
+expect([]).to.be.an(<span class="hljs-string">&apos;array&apos;</span>);
+expect(<span class="hljs-built_in">window</span>).not.to.be.an(Image);
+</code></pre>
+<h2><a id="Features_13" class="dashAnchor" name="//apple_ref/Module/Features"></a>Features</h2>
+<ul>
+<li>Cross-browser: works on IE6+, Firefox, Safari, Chrome, Opera.</li>
+<li>Compatible with all test frameworks.</li>
+<li>Node.JS ready (<code>require(&apos;expect.js&apos;)</code>).</li>
+<li>Standalone. Single global with no prototype extensions or shims.</li>
+</ul>
+<h2><a id="How_to_use_20" class="dashAnchor" name="//apple_ref/Module/How%20to%20use"></a>How to use</h2>
+<h3><a id="Node_22" class="dashAnchor" name="//apple_ref/Module/Node"></a>Node</h3>
+<p>Install it with NPM or add it to your <code>package.json</code>:</p>
+<pre><code class="hljs">$ npm install expect<span class="hljs-class">.js</span>
+</code></pre>
+<p>Then:</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> expect = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;expect.js&apos;</span>);
+</code></pre>
+<h3><a id="Browser_36" class="dashAnchor" name="//apple_ref/Module/Browser"></a>Browser</h3>
+<p>Expose the <code>index.js</code> found at the top level of this repository.</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;expect.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<h2><a id="API_44" class="dashAnchor" name="//apple_ref/Module/API"></a>API</h2>
+<p><strong>ok</strong>: asserts that the value is <em>truthy</em> or not</p>
+<pre><code class="hljs language-js">expect(<span class="hljs-number">1</span>).to.be.ok();
+expect(<span class="hljs-literal">true</span>).to.be.ok();
+expect({}).to.be.ok();
+expect(<span class="hljs-number">0</span>).to.not.be.ok();
+</code></pre>
+<p><strong>be</strong> / <strong>equal</strong>: asserts <code>===</code> equality</p>
+<pre><code class="hljs language-js">expect(<span class="hljs-number">1</span>).to.be(<span class="hljs-number">1</span>)
+expect(<span class="hljs-literal">NaN</span>).not.to.equal(<span class="hljs-literal">NaN</span>);
+expect(<span class="hljs-number">1</span>).not.to.be(<span class="hljs-literal">true</span>)
+expect(<span class="hljs-string">&apos;1&apos;</span>).to.not.be(<span class="hljs-number">1</span>);
+</code></pre>
+<p><strong>eql</strong>: asserts loose equality that works with objects</p>
+<pre><code class="hljs language-js">expect({ a: <span class="hljs-string">&apos;b&apos;</span> }).to.eql({ a: <span class="hljs-string">&apos;b&apos;</span> });
+expect(<span class="hljs-number">1</span>).to.eql(<span class="hljs-string">&apos;1&apos;</span>);
+</code></pre>
+<p><strong>a</strong>/<strong>an</strong>: asserts <code>typeof</code> with support for <code>array</code> type and <code>instanceof</code></p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// typeof with optional `array`</span>
+expect(<span class="hljs-number">5</span>).to.be.a(<span class="hljs-string">&apos;number&apos;</span>);
+expect([]).to.be.an(<span class="hljs-string">&apos;array&apos;</span>);  <span class="hljs-comment">// works</span>
+expect([]).to.be.an(<span class="hljs-string">&apos;object&apos;</span>); <span class="hljs-comment">// works too, since it uses `typeof`</span>
+
+<span class="hljs-comment">// constructors</span>
+expect([]).to.be.an(<span class="hljs-built_in">Array</span>);
+expect(tobi).to.be.a(Ferret);
+expect(person).to.be.a(Mammal);
+</code></pre>
+<p><strong>match</strong>: asserts <code>String</code> regular expression match</p>
+<pre><code class="hljs language-js">expect(program.version).to.match(<span class="hljs-regexp">/[0-9]+\.[0-9]+\.[0-9]+/</span>);
+</code></pre>
+<p><strong>contain</strong>: asserts indexOf for an array or string</p>
+<pre><code class="hljs language-js">expect([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]).to.contain(<span class="hljs-number">1</span>);
+expect(<span class="hljs-string">&apos;hello world&apos;</span>).to.contain(<span class="hljs-string">&apos;world&apos;</span>);
+</code></pre>
+<p><strong>length</strong>: asserts array <code>.length</code></p>
+<pre><code class="hljs language-js">expect([]).to.have.length(<span class="hljs-number">0</span>);
+expect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).to.have.length(<span class="hljs-number">3</span>);
+</code></pre>
+<p><strong>empty</strong>: asserts that an array is empty or not</p>
+<pre><code class="hljs language-js">expect([]).to.be.empty();
+expect({}).to.be.empty();
+expect({ length: <span class="hljs-number">0</span>, duck: <span class="hljs-string">&apos;typing&apos;</span> }).to.be.empty();
+expect({ my: <span class="hljs-string">&apos;object&apos;</span> }).to.not.be.empty();
+expect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).to.not.be.empty();
+</code></pre>
+<p><strong>property</strong>: asserts presence of an own property (and value optionally)</p>
+<pre><code class="hljs language-js">expect(<span class="hljs-built_in">window</span>).to.have.property(<span class="hljs-string">&apos;expect&apos;</span>)
+expect(<span class="hljs-built_in">window</span>).to.have.property(<span class="hljs-string">&apos;expect&apos;</span>, expect)
+expect({a: <span class="hljs-string">&apos;b&apos;</span>}).to.have.property(<span class="hljs-string">&apos;a&apos;</span>);
+</code></pre>
+<p><strong>key</strong>/<strong>keys</strong>: asserts the presence of a key. Supports the <code>only</code> modifier</p>
+<pre><code class="hljs language-js">expect({ a: <span class="hljs-string">&apos;b&apos;</span> }).to.have.key(<span class="hljs-string">&apos;a&apos;</span>);
+expect({ a: <span class="hljs-string">&apos;b&apos;</span>, c: <span class="hljs-string">&apos;d&apos;</span> }).to.only.have.keys(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>);
+expect({ a: <span class="hljs-string">&apos;b&apos;</span>, c: <span class="hljs-string">&apos;d&apos;</span> }).to.only.have.keys([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>]);
+expect({ a: <span class="hljs-string">&apos;b&apos;</span>, c: <span class="hljs-string">&apos;d&apos;</span> }).to.not.only.have.key(<span class="hljs-string">&apos;a&apos;</span>);
+</code></pre>
+<p><strong>throw</strong>/<strong>throwException</strong>/<strong>throwError</strong>: asserts that the <code>Function</code> throws or not when called</p>
+<pre><code class="hljs language-js">expect(fn).to.throw(); <span class="hljs-comment">// synonym of throwException</span>
+expect(fn).to.throwError(); <span class="hljs-comment">// synonym of throwException</span>
+expect(fn).to.throwException(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{ <span class="hljs-comment">// get the exception object</span>
+  expect(e).to.be.a(<span class="hljs-built_in">SyntaxError</span>);
+});
+expect(fn).to.throwException(<span class="hljs-regexp">/matches the exception message/</span>);
+expect(fn2).to.not.throwException();
+</code></pre>
+<p><strong>withArgs</strong>: creates anonymous function to call fn with arguments</p>
+<pre><code class="hljs language-js">expect(fn).withArgs(invalid, arg).to.throwException();
+expect(fn).withArgs(valid, arg).to.not.throwException();
+</code></pre>
+<p><strong>within</strong>: asserts a number within a range</p>
+<pre><code class="hljs language-js">expect(<span class="hljs-number">1</span>).to.be.within(<span class="hljs-number">0</span>, <span class="hljs-literal">Infinity</span>);
+</code></pre>
+<p><strong>greaterThan</strong>/<strong>above</strong>: asserts <code>&gt;</code></p>
+<pre><code class="hljs language-js">expect(<span class="hljs-number">3</span>).to.be.above(<span class="hljs-number">0</span>);
+expect(<span class="hljs-number">5</span>).to.be.greaterThan(<span class="hljs-number">3</span>);
+</code></pre>
+<p><strong>lessThan</strong>/<strong>below</strong>: asserts <code>&lt;</code></p>
+<pre><code class="hljs language-js">expect(<span class="hljs-number">0</span>).to.be.below(<span class="hljs-number">3</span>);
+expect(<span class="hljs-number">1</span>).to.be.lessThan(<span class="hljs-number">3</span>);
+</code></pre>
+<p><strong>fail</strong>: explicitly forces failure.</p>
+<pre><code class="hljs language-js">expect().fail()
+expect().fail(<span class="hljs-string">&quot;Custom failure message&quot;</span>)
+</code></pre>
+<h2><a id="Using_with_a_test_framework_178" class="dashAnchor" name="//apple_ref/Module/Using%20with%20a%20test%20framework"></a>Using with a test framework</h2>
+<p>For example, if you create a test suite with
+<a href="http://github.com/visionmedia/mocha">mocha</a>.</p>
+<p>Let&#x2019;s say we wanted to test the following program:</p>
+<p><strong>math.js</strong></p>
+<pre><code class="hljs language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a + b; };
+</code></pre>
+<p>Our test file would look like this:</p>
+<pre><code class="hljs language-js">describe(<span class="hljs-string">&apos;test suite&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  it(<span class="hljs-string">&apos;should expose a function&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    expect(add).to.be.a(<span class="hljs-string">&apos;function&apos;</span>);
+  });
+
+  it(<span class="hljs-string">&apos;should do math&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    expect(add(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)).to.equal(<span class="hljs-number">4</span>);
+  });
+});
+</code></pre>
+<p>If a certain expectation fails, an exception will be raised which gets captured
+and shown/processed by the test runner.</p>
+<h2><a id="Differences_with_shouldjs_208" class="dashAnchor" name="//apple_ref/Module/Differences%20with%20should.js"></a>Differences with should.js</h2>
+<ul>
+<li>No need for static <code>should</code> methods like <code>should.strictEqual</code>. For example,
+<code>expect(obj).to.be(undefined)</code> works well.</li>
+<li>Some API simplifications / changes.</li>
+<li>API changes related to browser compatibility.</li>
+</ul>
+<h2><a id="Running_tests_215" class="dashAnchor" name="//apple_ref/Module/Running%20tests"></a>Running tests</h2>
+<p>Clone the repository and install the developer dependencies:</p>
+<pre><code class="hljs">git <span class="hljs-keyword">clone</span> <span class="hljs-title">git</span>://github.com/LearnBoost/expect.js.git expect
+cd expect &amp;&amp; npm install
+</code></pre>
+<h3><a id="Node_224" class="dashAnchor" name="//apple_ref/Module/Node"></a>Node</h3>
+<p><code>make test</code></p>
+<h3><a id="Browser_228" class="dashAnchor" name="//apple_ref/Module/Browser"></a>Browser</h3>
+<p><code>make test-browser</code></p>
+<p>and point your browser(s) to <code>http://localhost:3000/test/</code></p>
+<h2><a id="Credits_234" class="dashAnchor" name="//apple_ref/Module/Credits"></a>Credits</h2>
+<p>(The MIT License)</p>
+<p>Copyright &#xA9; 2011 Guillermo Rauch &lt;guillermo@learnboost.com&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&#x2018;Software&#x2019;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &#x2018;AS IS&#x2019;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<h3><a id="3rdparty_259" class="dashAnchor" name="//apple_ref/Module/3rd-party"></a>3rd-party</h3>
+<p>Heavily borrows from <a href="http://github.com/visionmedia/should.js">should.js</a> by TJ
+Holowaychuck - MIT.</p>
+
+                </body>
+            </html>
+        
+                </body>
+            </html>
+        

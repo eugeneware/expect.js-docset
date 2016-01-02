@@ -2,6 +2,12 @@
 
 Dash Docset for [expect.js](https://github.com/Automattic/expect.js)
 
+# Installation Instructions
+
+Just grab the latest release [here](https://raw.githubusercontent.com/eugeneware/expect.js-docset/master/output/ExpectJS.docset.zip)
+and unzip it then double click the unzipped `ExpectJS.docset` to install it
+into dash. The search keyword is `expect:`.
+
 # Instructions
 
 Make sure you using at least node.js `4.2.x`
